@@ -6,6 +6,7 @@ const Email = require("./../utlis/email");
 const userController = require("./userController");
 const catchAsync = require("./../utlis/catchAsync");
 const AppError = require("./../utlis/appError");
+const City = require("./../Models/cityModel");
 
 ////creates a JWT token
 const signToken = (id) => {
@@ -202,6 +203,12 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   ///This function will eliminate the unauthorized fields
   const filteredobj = filterobj(req.body, "city", "name");
+  if (Object.keys(filteredobj).includes("city")) {
+    const city = await City.find({ name: filteredobj.city }).select("_id");
+    console.log(city);
+    filteredobj.cityId = city[0]._id;
+    console.log(filteredobj);
+  }
   //console.log("hey", filteredobj);
   const user = await User.findOneAndUpdate({ _id: req._id }, filteredobj, {
     runValidators: true,
