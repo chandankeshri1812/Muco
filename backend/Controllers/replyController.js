@@ -6,7 +6,7 @@ const AppError = require("./../utlis/appError");
 const catchAsync = require("../utlis/catchAsync");
 const User = require("./../Models/userModels");
 const multerStorage = multer.memoryStorage();
-
+const cloudinary = require("./../utlis/cloudinary");
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
