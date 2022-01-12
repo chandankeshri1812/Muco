@@ -40,9 +40,9 @@ block timeline
       .post__foot.post-1--foot.post_div_last_para
         button.post__view.post-1--view View Less
         -if(user.role=='user')
-         button#post_reply_model_btn.post__view.post-1--view Reply
+         button#post_reply_model_btn.post__view.post-1--view.give-post-reply Reply
         -if(user.role=='admin')
-         button#post_reply_model_btn.post__view.post-1--view Fix Problem
+         button#post_reply_model_btn.post__view.post-1--view.fix-post-problem Fix Problem
         button.post__view.post-1--view.view_All_Reply(data-filter="View Reply")  View Reply
         button.post__like
           img.post__like-img.post__like-img-0(src='/img/homepage/like-0.svg')
@@ -61,10 +61,9 @@ block timeline
           .post__text-field.post-1--text-field(style='font-size: 15px; text-align: left;')
             | #{post.address}
           #mapView.choose_map_view_addr
-      -if(user.role =='user')
-      #replymodel_post.replymodel_post
+      #replymodel_post.replymodel_post.replymodel-open
         .icon_replymodel
-          #cross_reply_model.icon_cross_reply_model x
+          #cross_reply_model.icon_cross_reply_model1 x
           .icon_content_reply_model Reply
           .icon_post_btn_reply_model.post-reply-button Post
         .reply_div_form_sec
@@ -75,10 +74,9 @@ block timeline
               label(for='upload-imgs') 
               input#new_post_imgs1(name='upload-imgs' class='post-reply-images' type='file' multiple=true  accept='image/*') 
                 
-      -if(user.role=='admin')
       #replymodel_post.replymodel_post.reply_another_main_Conti
         .icon_replymodel
-          #cross_reply_model.icon_cross_reply_model x
+          #cross_reply_model.icon_cross_reply_model2 x
           .icon_content_reply_model Reply
           .icon_post_btn_reply_model.post-fixproblem Post
         .menu_bar_another_m

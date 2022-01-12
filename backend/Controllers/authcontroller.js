@@ -49,6 +49,7 @@ const sendmail = async (res, user, url, subject, signUp) => {
     if (signUp) {
       await User.deleteOne({ _id: user._id });
     }
+    console.log(res);
     res.status(400).json({
       status: "Failed to send mail, try again",
       message: err,

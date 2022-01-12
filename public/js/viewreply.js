@@ -116,3 +116,37 @@ Reply__container.addEventListener("click", (e) => {
     getAllImage(url);
   }
 });
+
+////////////////////////////////Give Reply///////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+const reply_Button_modal = document.querySelector(".give-post-reply");
+if (reply_Button_modal) {
+  reply_Button_modal.addEventListener("click", () => {
+    console.log("hello man");
+    const documentName = document.querySelector(".replymodel-open");
+    showreplymodel_post(documentName);
+  });
+}
+const fix_post_problem_button = document.querySelector(".fix-post-problem");
+if (fix_post_problem_button) {
+  fix_post_problem_button.addEventListener("click", () => {
+    const documentName = document.querySelector(".reply_another_main_Conti");
+    showreplymodel_post(documentName);
+  });
+}
+const cross_reply_model1 = document.querySelector(".icon_cross_reply_model1");
+if (cross_reply_model1) {
+  cross_reply_model1.addEventListener("click", () => {
+    const documentName = document.querySelector(".replymodel-open");
+    hideReplyModel_post(documentName);
+  });
+}
+
+const cross_reply_model2 = document.querySelector(".icon_cross_reply_model2");
+if (cross_reply_model2) {
+  cross_reply_model2.addEventListener("click", () => {
+    console.log("hello");
+    const documentName = document.querySelector(".reply_another_main_Conti");
+    hideReplyModel_post(documentName);
+  });
+}

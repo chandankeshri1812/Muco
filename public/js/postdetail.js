@@ -52,17 +52,17 @@ menu_bar_PostDetails.addEventListener("click", (e) => {
 // // // reply model open
 const replymodel_post = document.querySelector("#replymodel_post");
 const post_reply_model_btn = document.querySelector("#post_reply_model_btn");
-const cross_reply_model = document.querySelector("#cross_reply_model");
-post_reply_model_btn.addEventListener("click", showreplymodel_post);
-cross_reply_model.addEventListener("click", hideReplyModel_post);
+//const cross_reply_model = document.querySelector("#cross_reply_model");
+//post_reply_model_btn.addEventListener("click", showreplymodel_post);
+//cross_reply_model.addEventListener("click", hideReplyModel_post);
 
-function showreplymodel_post() {
-  replymodel_post.classList.add("show_reply_model");
+function showreplymodel_post(documentName) {
+  documentName.classList.add("show_reply_model");
   modals_wrapper.classList.remove("hidden");
 }
 
-function hideReplyModel_post() {
-  replymodel_post.classList.remove("show_reply_model");
+function hideReplyModel_post(documentName) {
+  documentName.classList.remove("show_reply_model");
   modals_wrapper.classList.add("hidden");
 }
 
