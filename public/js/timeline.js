@@ -57,7 +57,7 @@ let renderPosts = (posts) => {
     </p>
 
     <div class="post__imgs--div post--1__img--div">
-    <img src="/img/users/${el.images[0]}" class="post__img post--1__img--1" />
+    <img src="${el.images[0]}" class="post__img post--1__img--1" />
   
           <div class="post__img-counter post--1__img--counter">+${
             el.images.length

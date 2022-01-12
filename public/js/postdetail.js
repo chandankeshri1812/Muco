@@ -1,5 +1,4 @@
 // post details /////////////////////////////
-console.log("hello");
 const menu_post_details = document.querySelector("#menu_post_details");
 const menu_bar_PostDetails = document.querySelector("#menu_bar_PostDetails");
 const post_details = document.querySelector("#post_details");
@@ -95,7 +94,6 @@ function show_Cross_model_view_address() {
 ////////////////////////////////////////////////////////
 const userid = document.querySelector(".nav__profile").dataset.userid;
 const postid = document.querySelector(".post__box").dataset.postid;
-console.log("hey", userid);
 const post__like_img_Image = document.querySelector(".post__like-img");
 const post__like_class = document.querySelector(".post__like");
 let like_dislike_image = "/img/homepage/like-0.svg";
@@ -103,7 +101,6 @@ let className = "";
 const activate_like = async function () {
   const promise = await fetch(`/api/v1/post/getOnepost/${postid}`);
   const res = await promise.json();
-  console.log(res.data.post.likedBy);
   if (res.data.post.likedBy.includes(userid)) {
     console.log("hello");
     like_dislike_image = "/img/homepage/like-1.svg";
@@ -116,7 +113,6 @@ const activate_like = async function () {
 };
 
 activate_like();
-console.log(post__like_img_Image.getAttribute("src"));
 activateLikeButton();
 
 /////////////////////////////view less/////////////////////

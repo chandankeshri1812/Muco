@@ -38,7 +38,7 @@ function AppendAllReplies(allReply, filter = "View Status") {
         ${
           el.images.length > 0
             ? ` <div class="post__imgs--div post--1__img--div">
-           <img src="/img/users/${el.images[0]}" class="post__img post--1__img--1" /> <div class="post__img-counter post--1__img--counter">${el.images.length}</div>   </div>`
+           <img src="${el.images[0]}" class="post__img post--1__img--1" /> <div class="post__img-counter post--1__img--counter">${el.images.length}</div>   </div>`
             : ""
         }
         <div class="post__foot post-1--foot post_div_last_para ">
@@ -53,7 +53,6 @@ function AppendAllReplies(allReply, filter = "View Status") {
   });
 }
 const viewReply = document.querySelector(".view_All_Reply");
-console.log("hello hye bye", viewReply);
 viewReply.addEventListener("click", () => {
   let filter = "View Status";
   [...view_all_reply_container.children].forEach((el) => el.remove());

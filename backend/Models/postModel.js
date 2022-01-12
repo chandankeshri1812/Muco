@@ -3,16 +3,17 @@ const postSchema = new mongoose.Schema(
   {
     discription: {
       type: String,
-      required: true,
+      required: [true, "Post must have a discription"],
       minlength: [10, "Discription shall be atleast of 10 words"],
       maxlength: [200, "Discription shall not exceed above 200 words"],
     },
-    images: [String],
-    //require: true,
-
+    images: {
+      type: [String],
+      required: [true, "Post must have images"],
+    },
     address: {
       type: String,
-      required: true,
+      required: [true, "Address must be of atleast 15 words"],
     },
     city: {
       type: mongoose.Schema.ObjectId,

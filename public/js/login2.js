@@ -47,7 +47,6 @@ loginbutton.addEventListener("click", (e) => {
   e.preventDefault();
   const email = document.querySelector(".login-user").value;
   const password = document.querySelector(".login-password").value;
-  console.log(email, password);
   const url = "/api/v1/users/login";
   login({ email, password }, url);
 });

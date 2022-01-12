@@ -33,7 +33,7 @@ block timeline
       .post__text-field.post-1--text-field
         | #{post.discription}
       .post__imgs--div.post--1__img--div
-        img.post__img.post--1__img--1(src=`/img/users/${post.images[0]}`)
+        img.post__img.post--1__img--1(src=`${post.images[0]}` width="600" height="400")
         each image in post.images
          img.post__img.post--1__img--1.slider-img.hidden(src=`/img/users/${image}`)
         .post__img-counter.post--1__img--counter +3

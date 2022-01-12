@@ -7,9 +7,9 @@ const catchAsync = require("../utlis/catchAsync");
 const Post = require("./../Models/postModel");
 const User = require("./../Models/userModels");
 const APIFeatures = require("./../utlis/apiFeatures");
-
+const cloudinary = require("./../utlis/cloudinary");
+const fs = require("fs");
 const multerStorage = multer.memoryStorage();
-
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
@@ -29,23 +29,26 @@ exports.resizePostImages = catchAsync(async (req, res, next) => {
   if (!req.files)
     return next(new AppError("You must provide at least one image", 400));
   req.body.images = [];
-
+  //console.log(req.files);
   await Promise.all(
     req.files.images.map(async (file, i) => {
       const filename = `post-${req._id}-${Date.now()}-${i + 1}.jpeg`;
-
-      await sharp(file.buffer)
+      //console.log(file);
+      const file1 = await sharp(file.buffer)
         .resize(2000, 1333)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toFile(`public/img/users/${filename}`);
 
-      req.body.images.push(filename);
+      //console.log(file1);
+      const result = await cloudinary.uploader.upload(
+        `public/img/users/${filename}`
+      );
+      req.body.images.push(result.secure_url);
     })
   );
   next();
 });
-
 exports.postProblem = catchAsync(async function (req, res, next) {
   const post = await Post.create(req.body);
   if (!post) return next(new AppError("No post available", 400));

@@ -1,4 +1,3 @@
-console.log("Hello");
 const getfilteredPosts = async (filterElement) => {
   const url = `/api/v1/post/yourPost/${filterElement}`;
   const promise = await fetch(url);
@@ -33,7 +32,7 @@ const renderfilteredPosts = (data) => {
         </p>
       
         <div class="post__imgs--div post--1__img--div">
-          <img src="/img/users/${el.images[0]}" class="post__img post--1__img--1" />
+          <img src="${el.images[0]}" class="post__img post--1__img--1" />
           <div class="post__img-counter post--1__img--counter">+${el.images.length}</div>
         </div>
       

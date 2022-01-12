@@ -41,8 +41,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: [true, "Please provide your city name"],
       enum: {
-        values: ["Ranchi", "Mumbai", "Delhi", "Chennai", "Pune"],
-        message: "City should be Ranchi, Mumbai, Delhi, Chennai,or Pune ",
+        values: ["Ranchi", "Mumbai", "Kolkata", "Chennai", "Pune"],
+        message: "City should be Ranchi, Mumbai, Kolkata, Chennai,or Pune ",
       },
     },
     role: {

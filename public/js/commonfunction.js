@@ -222,7 +222,7 @@ function renderAllImages(images) {
   previousImg.forEach((el) => el.remove());
   images.forEach((image) => {
     const html = ` <div class="img_slide_model">
-    <img src="/img/users/${image}" class="slide-img" alt="" />
+    <img src="${image}" class="slide-img" alt="" />
   </div>`;
     const element = document.createElement("div");
     element.innerHTML = html;

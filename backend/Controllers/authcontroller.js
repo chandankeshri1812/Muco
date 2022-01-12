@@ -15,7 +15,7 @@ const signToken = (id) => {
   });
 };
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode = 200, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
@@ -25,10 +25,10 @@ const createSendToken = (user, statusCode, res) => {
   };
   //if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
   //console.log("Token", token);
-  res.cookie("jwt", token, cookieOptions);
-  // Remove password from output
-  user.password = undefined;
 
+  res.cookie("jwt", token, cookieOptions);
+  ///console.log("jwt", res.cookies.jwt);
+  // Remove password from output
   res.status(statusCode).json({
     status: "success",
     token,
@@ -108,9 +108,11 @@ exports.signupverified = catchAsync(async (req, res, next) => {
       message: "Verified",
     });
   }
+  res.locals.userId = user._id;
   user.verified = true;
-  User.verifyTokenExpires = undefined;
+  user.verifyTokenExpires = undefined;
   await user.save({ validateBeforeSave: false });
+  console.log("user verify", user);
   createSendToken(user, 200, res);
 });
 

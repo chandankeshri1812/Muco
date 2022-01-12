@@ -41,8 +41,10 @@ exports.resizeReplyImages = catchAsync(async (req, res, next) => {
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toFile(`public/img/users/${filename}`);
-
-      req.body.images.push(filename);
+      const result = await cloudinary.uploader.upload(
+        `public/img/users/${filename}`
+      );
+      req.body.images.push(result.secure_url);
     })
   );
   next();

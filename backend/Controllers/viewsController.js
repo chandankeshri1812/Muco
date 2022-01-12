@@ -11,11 +11,10 @@ exports.login = (req, res, next) => {
   });
 };
 exports.logout = (req, res, next) => {
-  req.cookies.jwt = "";
+  res.cookie("jwt", "");
   res.redirect("/");
 };
 exports.home = (req, res, next) => {
-  //console.log("Hello", res.locals.user);
   const user = res.locals.user;
   if (user) {
     res.status(200).render("homepage", {
@@ -66,15 +65,25 @@ exports.signupverified = async (req, res, next) => {
         req.params.verifyToken
       }`,
     });
-    if (response.data.status == "success") {
+    const keys = Object.keys(response.headers).filter(
+      (el) => el == "set-cookie"
+    )[0];
+    const token = response.headers[keys][0].split("=")[1].split(";")[0];
+    const cookieOptions = {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+    };
+    res.cookie("jwt", token, cookieOptions);
+    if (response.status == 200) {
       //console.log("Cookies ", req.cookies.jwt);
-      res.redirect("/home");
-    } else {
+      return res.redirect("/home");
     }
   } catch (err) {
     //console.log(err);
     res.status(400).render("err", {
-      error: "Something went wrong,Login again",
+      error: "Something went wrong,signup again",
       status: 400,
     });
   }
