@@ -6,14 +6,22 @@ const option = {
 let cordinate = [];
 let map;
 let mapMarkers = [];
-navigator.geolocation.getCurrentPosition(
-  loadmap,
-  () => AlertBoxAppend("Position Not found"),
-  Option
-);
+let latitude, longitude;
+navigator.geolocation.getCurrentPosition(loadmap, loadmap2, Option);
 function loadmap(position) {
-  const { latitude, longitude } = position.coords;
+  if (position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    showmap(latitude, longitude);
+  }
+}
+function loadmap2() {
+  latitude = 25.590834781444045;
+  longitude = 85.140929062726;
+  showmap(latitude, longitude);
+}
 
+function showmap(latitude, longitude) {
   map = new mapboxgl.Map({
     container: "map", // container ID
     style: "mapbox://styles/agarwalpawan/cky5u0h2o8u0314l5co951z2d", // style URL

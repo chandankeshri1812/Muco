@@ -98,6 +98,9 @@ exports.postDetail = async (req, res, next) => {
     });
   }
   const post = await Post.findById(String(req.params.postid));
+  if (!post) {
+    res.redirect("/homepage");
+  }
   res.status(200).render("postdetail", {
     title: "Muco| Post Detail",
     post,
