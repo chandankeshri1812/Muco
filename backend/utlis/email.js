@@ -10,7 +10,7 @@ module.exports = class Email {
     this.from = "Muco Association<Muco@gmail.com>";
   }
   newTransport() {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV == "production") {
       return nodemailer.createTransport({
         // host: process.env.MAILGUN_HOST,
         // PORT: process.env.MAILGUN_PORT,
